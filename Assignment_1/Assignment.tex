@@ -1,0 +1,146 @@
+\documentclass{unswmaths}
+\usepackage[a4paper]{geometry}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\begin{document}
+
+\setlength\parindent{0pt}
+
+\unswtitle{Adam J. Gray}{3329798}{Functional Analysis}{Assignment}
+\fancyfoot[l]{Adam J. Gray}
+\fancyfoot[r]{\today}
+\fancyhead[l]{The University of New South Wales}
+\fancyhead[r]{Functional Analysis}
+
+
+\section*{Question 1}
+\begin{align*}
+	\langle B_k, e_n \rangle &= \int_0^1 B_k(x) e^{-2\pi inx} dx. \\
+\end{align*}
+Integrate by parts with:
+\begin{equation*}
+	u = B_k(x) \qquad
+	du = {B'}_k(x) \qquad
+	v = \frac{-e^{2\pi inx}}{2\pi i n}
+\end{equation*}
+So
+\begin{align*}
+	\langle B_k, e_n \rangle &= \underbrace{\left[ 
+		\frac{-B_k(x)e^{-2\pi inx}}{2\pi in} \right]^1_0}_{=0}
+		+ \int_0^1 \frac{e^{-2\pi inx}}{2\pi in}{B'}_k(x) dx \\
+	&= \int_0^1 \frac{e^{-2\pi inx}}{2\pi in}{B'}_k(x) dx \\
+	&= \frac{k}{2\pi i n}\int_0^1 e^{-2\pi inx}B_{k-1}(x) dx.
+\end{align*}
+Integrating by parts again with:
+\begin{equation*}
+    u = B_{k-1}(x) \qquad
+    du = {B'}_{k-1}(x) \qquad
+    v = \frac{e^{-2\pi inx}}{2\pi in}
+\end{equation*}
+So
+\begin{align*}
+    \langle B_k, e_n \rangle &=
+        \frac{k}{2 \pi in}\left( \underbrace{
+            \left[\frac{B_{k-1}(x)e^{-2\pi inx}}{2\pi in} \right]_0^1}_{=0}
+        + \frac{1}{2\pi in}\int_0^1 e^{-2\pi inx}{B}'_{k-1}(x) dx \right) \\
+        &= \frac{k(k-1)}{(2\pi in)^2} \int_0^1 e^{-2\pi inx} B_{k-2}(x) dx.
+\end{align*}
+Continuing thus
+\begin{align*}
+    \langle B_k, e_n \rangle 
+        &= \frac{k!}{(2\pi in)^{k-1}} \int_0^1 e^{-2\pi inx} (x-\frac{1}{2}) dx \\
+        &= \frac{-k!}{(2\pi in)^k}.
+\end{align*}
+Thus
+\begin{equation*}
+    B_k(x) = \sum_{n \in \mathbb{Z}} \frac{-k!}{(2\pi in)^k} e^{2\pi inx}.
+\end{equation*}
+\clearpage 
+\section*{Question 2}
+Consider the set $ S_n := \operatorname{span} \{x^k\}^n_{k=0} $ and note that
+$$ S_n = S_{n-1} \oplus S^\perp_{n-1}. $$ Let $ \ell_n $ be the $ n$th Legendre polynomial. 
+Now $ S_{n-1} \cap S_n $ has dimension 1 in so if we can show 
+$$ \ell_n \in S_{n-1}^\perp \cap S_n $$ 
+then $ S_{n-1}^\perp = \operatorname{span} \{ \ell_n \} $.
+
+To see this just see that for $ k < n $
+\begin{align*}
+	\langle x^k, \ell_n(x) \rangle 
+		&= R(n) \int_{-1}^1 t^k \frac{d^n}{dx^n} \left[ (x^2 - 1)^n \right] dx
+\end{align*}
+where 
+$$
+	R(n) = \sqrt{\frac{2n+1}{2}}\frac{1}{2^n n!}. 
+$$
+Applying the lemma discussed in class (by applying repeated integration by parts)
+we have that
+\begin{align*}
+	\langle x^k, \ell_n(x) \rangle 
+		&= R(n) (-1)^k k! \int_{-1}^{1} \frac{d^{n-k}}{dx^{n-k}} \left[ (x^2 - 1)^n \right] dx \\
+		&= R(n) (-1)^k k! \left[ \frac{d^{n-k-1}}{dx^{n-k-1}} \left[ (x^2 - 1)^n \right] \right]_{-1}^{1} \\
+		&= R(n) (-1)^k k! \left[ S(x)(x^2 - 1) \right]_{-1}^{1} \\
+		&= 0
+\end{align*}
+where S(x) is a polynomial function of $ x $. 
+
+So for $ n > k $ we have that $ \ell_n \in S_{n-1}^\perp $ and since $ \ell_n $ is an
+$ n$th degree polynomial $ \ell_n \in S_{n-1}^\perp \cap S_n $
+
+Now consider $ f{n} = x^n - \operatorname{proj}_{S_{n-1}}x^n $ and note that this must be the
+$ n$th Legendre polynomial (unnormalized) and note that because by design $ f_n \in S_{n-1}^\perp \cap S_n $.
+We have that $ S_{n-1}^\perp \cap S_n = \operatorname{span} \{ \ell_{n} \} $ and so
+$ \ell_n = \alpha f_n $, where alpha is a normalization constant, and hence the Legendre
+polynomials are the polynomials which arise from the Gram-Schmidt process applied to
+$ \{ x^n \}_{n=0}^\infty $.
+
+\clearpage 
+\section*{Question 3}
+If we write $ P_n(x) =  \sqrt{\frac{2n+1}{2}} \frac{1}{2^n n!}\frac{d^n}{dx^n} \left[ (x^2 -1 )^n \right] $ then we can define
+$ Q_n(x) = \frac{d^n}{dx^n}\left[ (x^2 - 1)^n \right] $ and consider $ \langle x^k, Q_n(x) \rangle $.
+
+\begin{align*}
+	\langle x^k, Q_n(x) \rangle 
+		&= \int_{-1}^{1} x^k \frac{d^n}{dx^n} \left[ (x^2 - 1)^n \right] dx\\
+\end{align*}
+By applying repeated integration by parts and the lemma shown in class we have that if $ k < n $ then $ \langle x^k, Q_n(x) \rangle  = 0 $
+otherwise
+\begin{align*}
+	\int_{-1}^{1} x^k \frac{d^n}{dx^n} \left[ (x^2 - 1)^n \right] dx
+		&= (-1)^{k-n}\frac{k!}{n!} \int_{-1}^{1} x^{k-n} (x^2 - 1)^n dx 
+\end{align*}
+Now as $ (x^2 - 1)^n $ is always even, then when $ k - n $ is odd the integral is $ 0 $. When $ k - n $ is even
+the integrand is even and so 
+\begin{align*}
+	(-1)^{k-n}\frac{k!}{n!} \int_{-1}^{1} x^{k-n} (x^2 - 1)^n dx
+		&= 2\frac{k!}{n!}\int_0^1 x^{k-n} (x^2 - 1)^n dx. \\
+\end{align*}
+Performing the substitution $ u = x^2 $ yields
+\begin{align*}
+	2\frac{k!}{n!}\int_{0}^{1} x^{k-n} (x^2 - 1)^n dx
+		&= (-1)^n \frac{k!}{n!}\int_0^1 u^{\frac{k-n-1}{2}}(1-u)^n du \\
+		&= (-1)^n \frac{k!}{n!}B(\frac{k-n}{2} + \frac{1}{2}, n+1) 
+\end{align*}
+Thus 
+\begin{align*}
+	\langle x^k, P_n(x) \rangle &= 
+		\begin{cases}
+			\sqrt{\frac{2n+1}{2}} \frac{1}{2^n} (-1)^n \frac{k!}{(n!)^2} B(\frac{k-n}{2} + \frac{1}{2}, n + 1) & \text{ when }  k > n \text{ and }  k - n \text{ is even. } \\
+			0 & \text{ otherwise. }
+		\end{cases}
+\end{align*}
+This can also be expressed as
+\begin{align*}
+	\langle x^k, P_n(x) \rangle &= 
+		\begin{cases}
+			\sqrt{\frac{2n+1}{2}} (-1)^n \frac{k!}{n!} \frac{(k-n)!2^{n+2}\left( \frac{k+n+2}{2}\right)!}{\left( \frac{k-n}{2} \right)! (k+n+2)!} & \text{ when }  k > n \text{ and }  k - n \text{ is even. } \\
+			0 & \text{ otherwise. }
+		\end{cases}
+\end{align*}
+but this is silly.
+
+\section*{Acknowledgements}
+Thank you to Peter Nguyen for his simplified solution method for question 2. 
+It certainly made the solution fit on one page.
+
+\end{document}
