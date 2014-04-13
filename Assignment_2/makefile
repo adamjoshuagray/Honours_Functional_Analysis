@@ -4,7 +4,8 @@ COMP = pdflatex
 CLASS = unswmaths.cls
 
 $(NAME).pdf: $(NAME).tex $(CLASS)
-	$(COMP) $^
+	$(COMP) $^; \
+	$(COMP) $^; \
 
 read: $(NAME).pdf
 	$(READ) $^ &
@@ -17,8 +18,8 @@ spell:
 
 class_update:
 	cd ..; \
-	git submodule update --init --recursive; \
+	git submodule foreach git pull origin master; \
 	cd -; \
 	cp -r ../UNSW_Latex/artwork artwork; \
 	cp -r ../UNSW_Latex/unswmaths.cls unswmaths.cls	
-
+	cp -r ../UNSW_Latex/unswshortcuts.sty unswshortcuts.sty

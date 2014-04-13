@@ -7,10 +7,48 @@
 \studentno{3329798}
 
 \unswtitle
-
+\unswantiplagdec
 \section*{Question 1}
+See that
 \begin{align*}
-	0 \leq \langle Tx, x \rangle = \overline{\langle x, Tx \rangle} = \langle x, Tx \rangle && \forall x \in \mathcal{H}
+	\langle Tx, x \rangle &= \overline{\langle x, Tx \rangle} \\
+		&\geq 0
 \end{align*}
+which means
+\begin{align*}
+	\overline{\langle x, Tx \rangle} &= \langle x, Tx \rangle \\
+	    &= \langle T^* x, x \rangle
+\end{align*}
+so
+\begin{align*}
+	\langle (T - T^*)x, x \rangle &= 0
+\end{align*}
+for all $ x \in \mathcal{H} $.
 
+We just want to show that $ (T - T^*) = 0 $. 
+Say $ \langle Jx, x \rangle  = 0 $ for all $ x \in \mathcal{H} $ 
+then for $ x, y in \mathcal{H} $ see that 
+\begin{align}
+    \langle J(x + y), x + y \rangle &= \langle Jx, y \rangle 
+        + \langle Jy, x \rangle + \underbrace{\langle Jx, x \rangle}_{=0}
+        + \underbrace{\langle Jy, y \rangle}_{=0} \nonumber \\
+        \label{eq:1}
+        &= \langle Jx, y \rangle + \langle Jy, x \rangle
+\end{align}
+and see that
+\begin{align} 
+    \langle J(x + iy), x + iy \rangle &= \langle Jx, iy \rangle 
+        + \langle Jiy, x \rangle + \underbrace{\langle Jx, x \rangle}_{=0}
+        + \underbrace{\langle Jiy, iy \rangle}_{=0} \nonumber \\
+        &= -i\langle Jx, y \rangle + i\langle Jy, x \rangle  
+        \label{eq:2}
+\end{align}
+Now multiplying \eqref{eq:1} by $ i $ and subtracting it from \eqref{eq:2} yields
+$$
+    \langle Jx, y \rangle = 0
+$$
+for all $ x, y \in \mathcal{H} $ which implies $ J \equiv 0 $.
+Letting $ J = (T - T^*) $, yields $ (T - T^*) = 0 $ as required.
+
+So $ T \equiv T* $. \qed
 \end{document}
