@@ -27,7 +27,7 @@ for all $ x \in \mathcal{H} $.
 
 We just want to show that $ (T - T^*) = 0 $. 
 Say $ \langle Jx, x \rangle  = 0 $ for all $ x \in \mathcal{H} $ 
-then for $ x, y in \mathcal{H} $ see that 
+then for $ x, y \in \mathcal{H} $ see that 
 \begin{align}
     \langle J(x + y), x + y \rangle &= \langle Jx, y \rangle 
         + \langle Jy, x \rangle + \underbrace{\langle Jx, x \rangle}_{=0}
@@ -50,5 +50,29 @@ $$
 for all $ x, y \in \mathcal{H} $ which implies $ J \equiv 0 $.
 Letting $ J = (T - T^*) $, yields $ (T - T^*) = 0 $ as required.
 
-So $ T \equiv T* $. \qed
+So $ T \equiv T^* $. \qed
+
+\section*{Question 3}
+\subsubsection*{Part 1}
+$ x \in (\operatorname{Im} T)^\perp $ iff
+\begin{align*}
+    & \langle Ty, x \rangle = 0 &\forall y \in \mathcal{H}\\
+    & \Leftrightarrow \langle y, T^* x \rangle = 0 & \forall y \in \mathcal{H} \\
+    & \Leftrightarrow T^* x = 0 \\
+    & \Leftrightarrow x \in \ker T*
+\end{align*}
+So $ (\operatorname{Im} T)^\perp = \ker T^* $. \qed
+
+\subsubsection*{Part 2}
+Setting $ T = T^* $ in the result of \emph{part a} yeilds
+\begin{align*}
+    &(\operatorname{Im} T^*)^\perp = \ker T^{**}
+    & \Leftrightarrow  (\operatorname{Im} T^*)^\perp = \ker T
+\end{align*}
+and taking orthogonal complements of both sides gets
+\begin{align*}
+    & (\operatorname{Im} T^*)^{\perp \perp} = (\ker T)^\perp \\
+    & \Leftrightarrow \overline{\operatorname{Im} T^*} = (\ker T)^\perp.
+\end{align*}
+So $ \overline{\operatorname{Im} T^*} = (\ker T)^\perp $. \qed
 \end{document}
