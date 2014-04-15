@@ -51,7 +51,38 @@ for all $ x, y \in \mathcal{H} $ which implies $ J \equiv 0 $.
 Letting $ J = (T - T^*) $, yields $ (T - T^*) = 0 $ as required.
 
 So $ T \equiv T^* $. \qed
+\newpage
+\section*{Question 2}
+\subsubsection*{Part 1}
+From a toeplitz operator $ T = \left\{ a{_i,j} \right\}_{i,j\in\mathbb{Z}} $
+define the diagonal operator $ D_j $ as the matrix-type operator taken as then
+$ j$-th diagonal of $ T $. Ie.
+\begin{align*}
+D_j = 
+\left(
+\begin{matrix}
+	0 & \cdots & a_j & 0 & 0 & \cdots \\
+	0 & \cdots & 0 & a_j & 0 & \cdots  \\
+	0 & \cdots & 0 & 0 & \ddots & \cdots  \\
+\end{matrix}
+\right)
+\end{align*}
 
+If $ \mathbf{x} = (x_1, x_2, \ldots ) $ then it is clear that $ D_j \mathbf{x} = ( 0, \ldots, 0, a_j x_j, 0, \ldots ) $.
+Also it is clear that 
+$$
+	T = \sum_{j \in \mathbb{Z}} D_j.
+$$
+Since we have that $ \sum_{j \in\mathbb{Z}} |a_j|  = M < \infty $ we can write
+\begin{align*}
+	||T\mathbf{x}|| &= || \sum_{j \in \mathbb{Z}} D_j \mathbf{x} || \\
+		&\leq \sum_{j\in\mathbb{Z}} ||D_j \mathbf{x} || \\
+		&\leq \sum_{j \in\mathbb{Z}} |a_j| ||\mathbf{x} || \\
+		&= ||x|| \sum_{j \in\mathbb{Z}} |a_j| \\
+		&= ||x|| M
+\end{align*}
+and so $ T $ is a bounded on $ \ell^2 $.
+\newpage
 \section*{Question 3}
 \subsubsection*{Part 1}
 $ x \in (\operatorname{Im} T)^\perp $ iff
