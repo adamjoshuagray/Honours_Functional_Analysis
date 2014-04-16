@@ -82,6 +82,21 @@ Since we have that $ \sum_{j \in\mathbb{Z}} |a_j|  = M < \infty $ we can write
 		&= ||x|| M
 \end{align*}
 and so $ T $ is a bounded on $ \ell^2 $.
+
+\subsubsection*{Part 3}
+Using the idea that $ T = \sum_{j\in Z} D_j$ from part 1 we consider 
+\begin{align*}
+	\sum_{n=1}^{\infty} ||T e_n ||^2 &= \sum_{n=1}^{\infty} || \sum_{j \in \mathbb{Z}} D_j e_n ||^2 \\
+		&= \sum_{n=1}^{\infty} || ( a_{n-1}, a_{n-2}, \ldots ) ||^2 \\
+ 		&= \sum_{n=1}^{\infty} || \sum_{j=0}^{\infty} a_{n-j}^2 || \\
+\end{align*}
+
+Now suppose that $ a_k \neq 0 $ for  some $ k $ then there exits an $ N $ such that $ n > N $
+implies that $ a^2_k $ is in the sum $ \sum_{j=0}^{\infty} a_{n-j}^2 $ and consequently 
+$ || \sum_{j=0}^{\infty} a_{n-j}^2 || = \infty $.
+
+So $ a_k =0 $ for all $ k $ and Hilbert-Schmidt Toeplitz operators are $ 0 $.
+
 \newpage
 \section*{Question 3}
 \subsubsection*{Part 1}
