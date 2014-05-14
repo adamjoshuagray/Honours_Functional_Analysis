@@ -1,0 +1,100 @@
+\documentclass{unswmaths}
+\usepackage{unswshortcuts}
+\begin{document}
+\author{Adam J. Gray}
+\title{Assignment}
+\subject{Functional Analysis}
+\studentno{3329798}
+
+\unswtitle
+\unswantiplagdec
+
+\section*{Question 1}
+Define a map $ T : X/X_0 \lra (X_0^\perp)* $ by having $ T(x + X_0 )(f) = f(x) $.
+
+\emph{T Well Defined:}
+
+If $ x + X_0 = y + X_0 $ then $ f(x) = f(y) $ because $ x - y \in X_0 $ and $ f \in X_0^\perp $, so $ f(x) - f(y) = f(x-y) = 0 $.
+
+\emph{T Linear:}
+
+$$ T(\alpha x + \beta y + X_0) = f(\alpha x + \beta y) = \alpha f( x) + \beta f( y) = \alpha T(x) + \beta T(y) $$
+
+\emph{T Isometric:}
+
+Firstly prove $ ||T(x + X_0)||_{(X_0^\perp)^*} \leq ||x + X_0||_{X/X_0} $:
+
+$$ ||T(x + X_0) || = \sup_{\substack{||f|| \leq 1 \\ f \in X^\perp_0}}|f(x)| \leq \inf_{x \in X_0} ||x-x'|| $$
+because for all $ x' \in X_0 $, $ |f(x-x')| = |f(x)| = ||x-x'|| $.
+
+Now prove $ ||T(x + X_0)||_{(X_0^\perp)^*} \geq ||x + X_0||_{X/X_0} $.
+Fix $ x^* \in X $ and let 
+
+$ V = \operatorname{span}\left\{x^* \right\}$. Define $ \omega \in V^* $ by $ \omega(\lambda x) = \lambda||x^* + X_0||_{X/X_0}$. This functional is clearly linear on $ V $. 
+
+$ |\omega(x^*) | = ||x^*+X_0||_{X/X_0} \leq ||x^*||_{X} $ so  $$ ||\omega||_{V^*} = \sup_{\substack{x \in X \\ x \neq 0}} \frac{|\omega(x)|}{||x||_X} \leq 1. $$
+
+By Hahn-Banach $ \exists \ \ \overline{\omega} \in X^* $ with $ \overline{\omega}(x) = \omega(x) \ \ \forall \ \ x \in V $
+and $ |\overline{\omega}(x)| \leq |\omega(x)| = || x + X_0 || $.
+
+Then for $ z \in X_0 $, $ \overline{\omega}(z) = 0 $ because $ || z + X_0 || = 0 $ and so $ \overline{\omega} \in X_0^\perp $ 
+
+$ |\overline{\omega}(z)| \leq ||z|| $.
+
+Now $ \overline{\omega}(x^*) = ||x^* + X_0||_{X/X_0} $ therefore taking the sup over all $ f \in X_0^\perp $ we have
+$$
+	\sup_{\substack{f \in X_0^\perp \\ ||f||_{X^*} \leq 1}} |f(x^*)| \geq ||x^* + X_0 ||_{X/X_0}
+$$
+and so $ ||T(x^* + X_0)||_{(X_0^\perp)^*} \geq ||x^* + X_0||_{X/X_0} $ for all $ x^* \in X $.
+\qed
+
+\section*{Question 2}
+
+\section*{Question 3}
+
+Firstly show that $ X_0^\perp = \operatorname{span}\left\{ x \right\} $ where $ x = (1,1,1, \ldots ) $.
+
+Note that $ X^\perp = \ell^\infty $ from lectures. 
+
+Let $ y = (\xi_k)_{k\in\Ntrl} \in \ell^1 $ with $ \xi_1 = 1 $ and $ \xi_n = 1 $ but $ \xi_k = 0 $ otherwise and let $ z = ( \eta_k )_{k \in \Ntrl} \in X_0^\perp $. We require that for all $ y \in X_0 $
+$$
+	\sum_{k \in \Ntrl} \eta_k \xi_k = 0 \ \ \ \ \ \ \circledast
+$$
+
+This therefore requires that $ \eta_n = -\eta_1 $, but as $ n $ was abitrary and $\circledast $ must hold for all $ y \in X_0 $ so it follows that $ X_0^\perp \subseteq \operatorname{span}\left\{ x\right\}$ where $ x = (1,1,1,\ldots) $.
+
+It is clear that if $ z = (\eta, \eta, \eta, \ldots) \in \operatorname{span}\left\{ x \right\} $ then 
+$$
+	\sum_{k \in \Ntrl} \eta \xi_k = \eta \sum_{k \in \Ntrl} \xi_k = 0
+$$
+so $ z \in X_0^\perp $ and $ X_0^\perp = \operatorname{span}\left\{ x \right\} $.
+
+Secondly show that there exists an isometrical isomorphism $ T : X/X_0 \lra \Cplx $.
+
+Define a mapping $ T : X/X_0 \lra \Cplx $ by $ T(x + X_0) = \sum_{k \in \Ntrl}\xi_k $ where $ x = (\xi_k)_{k \in \Ntrl} $
+
+\emph{T Well Defined: }
+
+Suppose $ y = (\eta_k)_{k \in \Ntrl} \in X_0 $ and $ x = (\xi_k)_{k \in \Ntrl} \in X $ then 
+$$ T(x +y) =  \sum_{k \in \Ntrl} (\xi_k + \eta_k) = \sum_{k \in \Ntrl} \xi_k + \underbrace{\sum_{k \in \Ntrl} \eta_k}_{=0} = \sum_{k \in \Ntrl} \xi_k = T(x) $$
+
+\emph{T Linear: }
+
+This follows directly from the linearity of the sum.
+
+\emph{T Surjective: }
+
+This is clear, because for any $ a \in \Cplx $ we just notice that $ x = (a, 0, 0, \ldots ) $ is such that $ T(x + X_0) = a $.
+
+\emph{T Injective: }
+
+Suppose $ T(x + X_0) = T(y + X_0) $ then $ T(x -y  + X_0) = 0 $ by linearity and by the definition of $ T $ and $ X_0 $ it follows that $ x - y \in X_0 $ so $ x + X_0 = y + X_0 $.
+
+
+T injective and T surjective implies $ X/X_0 $ is ismorphic to $ \Cplx $.
+\emph{T Isometric: }
+
+Map 
+
+
+\end{document}
