@@ -50,6 +50,14 @@ and so $ ||T(x^* + X_0)||_{(X_0^\perp)^*} \geq ||x^* + X_0||_{X/X_0} $ for all $
 
 \section*{Question 2}
 
+Definition of T $ \Leftrightarrow $ T continuous $ \Leftrightarrow $ T bounded. (You probably didn't want that proof...)
+
+\textbf{Another method}
+
+\emph{T bounded $ \Rightarrow T^{-1}(U) $ open:}
+
+
+
 \section*{Question 3}
 
 Firstly show that $ X_0^\perp = \operatorname{span}\left\{ x \right\} $ where $ x = (1,1,1, \ldots ) $.
@@ -58,14 +66,14 @@ Note that $ X^\perp = \ell^\infty $ from lectures.
 
 Let $ y = (\xi_k)_{k\in\Ntrl} \in \ell^1 $ with $ \xi_1 = 1 $ and $ \xi_n = 1 $ but $ \xi_k = 0 $ otherwise and let $ z = ( \eta_k )_{k \in \Ntrl} \in X_0^\perp $. We require that for all $ y \in X_0 $
 $$
-	\sum_{k \in \Ntrl} \eta_k \xi_k = 0 \ \ \ \ \ \ \circledast
+	\sum_{k \in \Ntrl} \overline{\eta_k} \xi_k = 0 \ \ \ \ \ \ \circledast
 $$
 
 This therefore requires that $ \eta_n = -\eta_1 $, but as $ n $ was abitrary and $\circledast $ must hold for all $ y \in X_0 $ so it follows that $ X_0^\perp \subseteq \operatorname{span}\left\{ x\right\}$ where $ x = (1,1,1,\ldots) $.
 
 It is clear that if $ z = (\eta, \eta, \eta, \ldots) \in \operatorname{span}\left\{ x \right\} $ then 
 $$
-	\sum_{k \in \Ntrl} \eta \xi_k = \eta \sum_{k \in \Ntrl} \xi_k = 0
+	\sum_{k \in \Ntrl} \overline{\eta} \xi_k = \overline{\eta} \sum_{k \in \Ntrl} \xi_k = 0
 $$
 so $ z \in X_0^\perp $ and $ X_0^\perp = \operatorname{span}\left\{ x \right\} $.
 
@@ -91,10 +99,13 @@ This is clear, because for any $ a \in \Cplx $ we just notice that $ x = (a, 0, 
 Suppose $ T(x + X_0) = T(y + X_0) $ then $ T(x -y  + X_0) = 0 $ by linearity and by the definition of $ T $ and $ X_0 $ it follows that $ x - y \in X_0 $ so $ x + X_0 = y + X_0 $.
 
 
-T injective and T surjective implies $ X/X_0 $ is ismorphic to $ \Cplx $.
+T injective and T surjective implies $ X/X_0 $ is ismorphic to $ \Cplx $ and importantly 1 dimensional.
+
 \emph{T Isometric: }
 
-Map 
-
+Because we have shown that $ X/X_0 $ then we have that any $ y + X_0 \in X / X_0 $ is such that $ y = \lambda x + X_0 $. 
+We choose $ x= (\xi_k )_{k \in \Ntrl} $ with $ \xi_k = \left(\frac{1}{2} \right)^k $ \footnote{ $ 0 \not\in \Ntrl $ } so that $ T(x + X_0) = 1 $ and $ \xi_k \geq 0 $ for all $ k \in \Ntrl $.
+Now $ |T(y + X_0)| = |\lambda T(x+X_0)| = |\lambda| $ and $ ||y + X_0|| = \inf_{x \in X_0} ||y - x|| = ||y|| $ by the definition of $ X_0 $.
+So $ |T(y + X_0)| = ||y + X_0 || $ and $ T $ is an isometry.
 
 \end{document}
