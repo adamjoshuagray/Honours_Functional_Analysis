@@ -66,7 +66,7 @@ It follows that $ B_2 \subset T^{-1}(U) $ because this holds for any $ x_2 in B_
 \emph{$ T^{-1}(U) $ open $ \Rightarrow $ T bounded: }
 
 Let $ U = \{ y \in Y : ||y|| < 1 \} $ then we have that $ T^{-1}(U) $ is open, which specifically means that there exists
-some $ \varepsilon $ such that $ B = \{ X \in X : ||x|| < \varepsilon \} \subset T^{-1}(U) $. The fact that this ball contains $ 0 $ is guarenteed by the linearity of $ T $.
+some $ \varepsilon $ such that $ B = \{ X \in X : ||x|| < \varepsilon \} \subset T^{-1}(U) $. The fact that this ball contains $ 0 $ is guaranteed by the linearity of $ T $.
 
 Then for $ x \in B $, $ T(x) \in U $ so $$ \sup_{x\in B} ||Tx|| \leq 1 $$ and $$ \sup_{||x|| \leq 1} ||T x|| =\sup_{x \in B} ||T(\frac{x}{\varepsilon})||  \leq \frac{1}{\varepsilon}. $$
 
@@ -81,7 +81,7 @@ $$
 	\sum_{k \in \Ntrl} \overline{\eta_k} \xi_k = 0 \ \ \ \ \ \ \circledast
 $$
 
-This therefore requires that $ \eta_n = -\eta_1 $, but as $ n $ was abitrary and $\circledast $ must hold for all $ y \in X_0 $ so it follows that $ X_0^\perp \subseteq \operatorname{span}\left\{ x\right\}$ where $ x = (1,1,1,\ldots) $.
+This therefore requires that $ \eta_n = -\eta_1 $, but as $ n $ was arbitrary and $\circledast $ must hold for all $ y \in X_0 $ so it follows that $ X_0^\perp \subseteq \operatorname{span}\left\{ x\right\}$ where $ x = (1,1,1,\ldots) $.
 
 It is clear that if $ z = (\eta, \eta, \eta, \ldots) \in \operatorname{span}\left\{ x \right\} $ then 
 $$
@@ -111,7 +111,7 @@ This is clear, because for any $ a \in \Cplx $ we just notice that $ x = (a, 0, 
 Suppose $ T(x + X_0) = T(y + X_0) $ then $ T(x -y  + X_0) = 0 $ by linearity and by the definition of $ T $ and $ X_0 $ it follows that $ x - y \in X_0 $ so $ x + X_0 = y + X_0 $.
 
 
-T injective and T surjective implies $ X/X_0 $ is ismorphic to $ \Cplx $ and importantly 1 dimensional.
+T injective and T surjective implies $ X/X_0 $ is isomorphic to $ \Cplx $ and importantly 1 dimensional.
 
 \emph{T Isometric: }
 
@@ -119,5 +119,8 @@ Because we have shown that $ X/X_0 $ then we have that any $ y + X_0 \in X / X_0
 We choose $ x= (\xi_k )_{k \in \Ntrl} $ with $ \xi_k = \left(\frac{1}{2} \right)^k $ \footnote{ $ 0 \not\in \Ntrl $ } so that $ T(x + X_0) = 1 $ and $ \xi_k \geq 0 $ for all $ k \in \Ntrl $.
 Now $ |T(y + X_0)| = |\lambda T(x+X_0)| = |\lambda| $ and $ ||y + X_0|| = \inf_{x \in X_0} ||y - x|| = ||y|| $ by the definition of $ X_0 $.
 So $ |T(y + X_0)| = ||y + X_0 || $ and $ T $ is an isometry.
+
+\section*{Acknowledgments}
+Thank you to Ed McDonald for his guidance on various aspects of the questions.
 
 \end{document}

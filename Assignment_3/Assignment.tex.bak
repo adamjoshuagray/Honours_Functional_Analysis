@@ -1,5 +1,5 @@
 \documentclass{unswmaths}
-
+\usepackage{unswshortcuts}
 \begin{document}
 \author{Adam J. Gray}
 \title{Assignment}
@@ -10,137 +10,117 @@
 \unswantiplagdec
 
 \section*{Question 1}
-See that
-\begin{align*}
-	\langle Tx, x \rangle &= \overline{\langle x, Tx \rangle} \\
-		&\geq 0
-\end{align*}
-which means
-\begin{align*}
-	\overline{\langle x, Tx \rangle} &= \langle x, Tx \rangle \\
-	    &= \langle T^* x, x \rangle
-\end{align*}
-so
-\begin{align*}
-	\langle (T - T^*)x, x \rangle &= 0
-\end{align*}
-for all $ x \in \mathcal{H} $.
+Define a map $ T : X/X_0 \lra (X_0^\perp)* $ by having $ T(x + X_0 )(f) = f(x) $.
 
-We just want to show that $ (T - T^*) = 0 $. 
-Say $ \langle Jx, x \rangle  = 0 $ for all $ x \in \mathcal{H} $ 
-then for $ x, y \in \mathcal{H} $ see that 
-\begin{align}
-    \langle J(x + y), x + y \rangle &= \langle Jx, y \rangle 
-        + \langle Jy, x \rangle + \underbrace{\langle Jx, x \rangle}_{=0}
-        + \underbrace{\langle Jy, y \rangle}_{=0} \nonumber \\
-        \label{eq:1}
-        &= \langle Jx, y \rangle + \langle Jy, x \rangle
-\end{align}
-and see that
-\begin{align} 
-    \langle J(x + iy), x + iy \rangle &= \langle Jx, iy \rangle 
-        + \langle Jiy, x \rangle + \underbrace{\langle Jx, x \rangle}_{=0}
-        + \underbrace{\langle Jiy, iy \rangle}_{=0} \nonumber \\
-        &= -i\langle Jx, y \rangle + i\langle Jy, x \rangle  
-        \label{eq:2}
-\end{align}
-Now multiplying \eqref{eq:1} by $ i $ and subtracting it from \eqref{eq:2} yields
-$$
-    \langle Jx, y \rangle = 0
-$$
-for all $ x, y \in \mathcal{H} $ which implies $ J \equiv 0 $.
-Letting $ J = (T - T^*) $, yields $ (T - T^*) = 0 $ as required.
+\emph{T Well Defined:}
 
-So $ T \equiv T^* $. \qed
-\newpage
-\begin{multicols}{2}
+If $ x + X_0 = y + X_0 $ then $ f(x) = f(y) $ because $ x - y \in X_0 $ and $ f \in X_0^\perp $, so $ f(x) - f(y) = f(x-y) = 0 $.
+
+\emph{T Linear:}
+
+$$ T(\alpha x + \beta y + X_0) = f(\alpha x + \beta y) = \alpha f( x) + \beta f( y) = \alpha T(x) + \beta T(y) $$
+
+\emph{T Isometric:}
+
+Firstly prove $ ||T(x + X_0)||_{(X_0^\perp)^*} \leq ||x + X_0||_{X/X_0} $:
+
+$$ ||T(x + X_0) || = \sup_{\substack{||f|| \leq 1 \\ f \in X^\perp_0}}|f(x)| \leq \inf_{x \in X_0} ||x-x'|| $$
+because for all $ x' \in X_0 $, $ |f(x-x')| = |f(x)| = ||x-x'|| $.
+
+Now prove $ ||T(x + X_0)||_{(X_0^\perp)^*} \geq ||x + X_0||_{X/X_0} $.
+Fix $ x^* \in X $ and let 
+
+$ V = \operatorname{span}\left\{x^* \right\}$. Define $ \omega \in V^* $ by $ \omega(\lambda x) = \lambda||x^* + X_0||_{X/X_0}$. This functional is clearly linear on $ V $. 
+
+$ |\omega(x^*) | = ||x^*+X_0||_{X/X_0} \leq ||x^*||_{X} $ so  $$ ||\omega||_{V^*} = \sup_{\substack{x \in X \\ x \neq 0}} \frac{|\omega(x)|}{||x||_X} \leq 1. $$
+
+By Hahn-Banach $ \exists \ \ \overline{\omega} \in X^* $ with $ \overline{\omega}(x) = \omega(x) \ \ \forall \ \ x \in V $
+and $ |\overline{\omega}(x)| \leq |\omega(x)| = || x + X_0 || $.
+
+Then for $ z \in X_0 $, $ \overline{\omega}(z) = 0 $ because $ || z + X_0 || = 0 $ and so $ \overline{\omega} \in X_0^\perp $ 
+
+$ |\overline{\omega}(z)| \leq ||z|| $.
+
+Now $ \overline{\omega}(x^*) = ||x^* + X_0||_{X/X_0} $ therefore taking the sup over all $ f \in X_0^\perp $ we have
+$$
+	\sup_{\substack{f \in X_0^\perp \\ ||f||_{X^*} \leq 1}} |f(x^*)| \geq ||x^* + X_0 ||_{X/X_0}
+$$
+and so $ ||T(x^* + X_0)||_{(X_0^\perp)^*} \geq ||x^* + X_0||_{X/X_0} $ for all $ x^* \in X $.
+\qed
+
 \section*{Question 2}
 
-\subsubsection*{Part 1}
-From a toeplitz operator $ T = \left\{ a_{i-j} \right\}_{i,j\in\mathbb{Z}} $
-define the diagonal operator $ D_j $ as the matrix-type operator taken as then
-$ j$-th diagonal of $ T $. Ie.
-\begin{align*}
-D_j = 
-\left(
-\begin{matrix}
-	0 & 0 & 0 & \cdots \\
-	\vdots & \ddots  & \ddots & \ddots \\
-	0 & \ddots & \ddots & \ddots \\
-	a_j & \ddots & \ddots & \ddots \\
-	0 & a_j & \ddots & \ddots \\
-    0 & 0 & a_j & \ddots \\	
-    \vdots & \ddots & \ddots & \ddots \\	
-\end{matrix}
-\right)
-\end{align*}
+Definition of T $ \Leftrightarrow $ T continuous $ \Leftrightarrow $ T bounded. (You probably didn't want that proof...)
 
-If $ \mathbf{x} = (x_1, x_2, \ldots ) $ then it is clear that $ D_j \mathbf{x} = ( 0, \ldots, 0, a_j x_1, a_j x_2, \ldots ) $.
-if $ j > 0 $, and that $ D_j \mathbf{x} = ( a_j x_{j+1}, a_j x_{j+2},a_j x_{j+3}, \ldots ) $ when $ j < 0 $
-In the case $ j = 0 $ then $ D_0 \mathbf{x} = (a_0 x_1, a_0 x_2, a_0 x_3, \ldots ) $. 
-In all three cases we have bonded linear operators. We can regard $ D_j = (S^*)^j $ when $ j < 0 $,
-and $ D_j = S^j $ when $ j > 0 $ and the identity operator when $ j = 0$. Importantly in all
-three cases the norm of the operator is just $ 1 $.
-Also it is clear that 
-$$
-	T = \sum_{j \in \mathbb{Z}} D_j.
-$$
+\textbf{Another method}
 
-Since we have that $$ \sum_{j \in\mathbb{Z}} |a_j|  = M < \infty $$ we can write
-\begin{align*}
-	||T\mathbf{x}|| &= || \sum_{j \in \mathbb{Z}} D_j \mathbf{x} || \\
-		&\leq \sum_{j\in\mathbb{Z}} ||D_j \mathbf{x} || \\
-		&\leq \sum_{j \in\mathbb{Z}} |a_j| ||x|| \\
-		&= ||x|| \sum_{j \in\mathbb{Z}} |a_j| \\
-		&= ||x|| M
-\end{align*}
-and so $ T $ is a bounded on $ \ell^2 $.
+\emph{T bounded $ \Rightarrow T^{-1}(U) $ open:}
 
-\subsubsection*{Part 3}
-Using the idea that $ T = \sum_{j\in Z} D_j$ from part 1 we consider 
-\begin{align*}
-	\sum_{n=1}^{\infty} ||T e_n ||^2 &= \sum_{n=1}^{\infty} || \sum_{j \in \mathbb{Z}} D_j e_n ||^2 \\
-		&= \sum_{n=1}^{\infty} || ( a_{n-1}, a_{n-2}, \ldots ) ||^2 \\
- 		&= \sum_{n=1}^{\infty} || \sum_{j=0}^{\infty} a_{n-j}^2 || \\
-\end{align*}
+For some open $ U \in Y $ such that $ T^{-1}(U) \neq \emptyset $, pick an $ x_1 \in T^{-1}(U) $.
+Because $ U $ is open $ \exists \ \ \varepsilon > 0 $ such that $ B_1 =  \{ y \in Y : ||Tx_1-y|| < \varepsilon \} \subset U $. 
+Let $ \delta = \frac{\varepsilon}{||T||} $. Then any $ x_2 \in B_2 = \{ x \in X : ||x_1 - x_2|| < \delta \} $
+is such that $ ||Tx_1 - Tx_2|| \leq ||T|| \cdot ||x_1 - x_2 || < \varepsilon $ because $ T $ is bounded. This means $ Tx_2 \in U $ and importantly $ x_2 \in T^{-1}(U) $.
+It follows that $ B_2 \subset T^{-1}(U) $ because this holds for any $ x_2 in B_2 $. 
 
-Now suppose that $ a_k \neq 0 $ for  some $ k $ then there exits an $ N $ such that $ n > N $
-implies that $ a^2_k $ is in the sum $ \sum_{j=0}^{\infty} a_{n-j}^2 $ and consequently 
-$ \sum_{n=1}^{\infty} || \sum_{j=0}^{\infty} a_{n-j}^2 || = \infty $.
 
-So $ a_k =0 $ for all $ k $ and Hilbert-Schmidt Toeplitz operators are just the $ 0 $ operator.
+\emph{$ T^{-1}(U) $ open $ \Rightarrow $ T bounded: }
 
-\end{multicols}
+Let $ U = \{ y \in Y : ||y|| < 1 \} $ then we have that $ T^{-1}(U) $ is open, which specifically means that there exists
+some $ \varepsilon $ such that $ B = \{ X \in X : ||x|| < \varepsilon \} \subset T^{-1}(U) $. The fact that this ball contains $ 0 $ is guarenteed by the linearity of $ T $.
 
-\newpage
+Then for $ x \in B $, $ T(x) \in U $ so $$ \sup_{x\in B} ||Tx|| \leq 1 $$ and $$ \sup_{||x|| \leq 1} ||T x|| =\sup_{x \in B} ||T(\frac{x}{\varepsilon})||  \leq \frac{1}{\varepsilon}. $$
+
 \section*{Question 3}
-\subsubsection*{Part 1}
-$ x \in (\operatorname{Im} T)^\perp $ iff
-\begin{align*}
-    & \langle Ty, x \rangle = 0 &\forall y \in \mathcal{H}\\
-    & \Leftrightarrow \langle y, T^* x \rangle = 0 & \forall y \in \mathcal{H} \\
-    & \Leftrightarrow T^* x = 0 \\
-    & \Leftrightarrow x \in \ker T*
-\end{align*}
-So $ (\operatorname{Im} T)^\perp = \ker T^* $. \qed
 
-\subsubsection*{Part 2}
-Setting $ T = T^* $ in the result of \emph{part a} yields
-\begin{align*}
-    &(\operatorname{Im} T^*)^\perp = \ker T^{**}
-    & \Leftrightarrow  (\operatorname{Im} T^*)^\perp = \ker T
-\end{align*}
-and taking orthogonal complements of both sides gets
-\begin{align*}
-    & (\operatorname{Im} T^*)^{\perp \perp} = (\ker T)^\perp \\
-    & \Leftrightarrow \overline{\operatorname{Im} T^*} = (\ker T)^\perp.
-\end{align*}
-So $ \overline{\operatorname{Im} T^*} = (\ker T)^\perp $. \qed
+Firstly show that $ X_0^\perp = \operatorname{span}\left\{ x \right\} $ where $ x = (1,1,1, \ldots ) $.
+
+Note that $ X^\perp = \ell^\infty $ from lectures. 
+
+Let $ y = (\xi_k)_{k\in\Ntrl} \in \ell^1 $ with $ \xi_1 = 1 $ and $ \xi_n = 1 $ but $ \xi_k = 0 $ otherwise and let $ z = ( \eta_k )_{k \in \Ntrl} \in X_0^\perp $. We require that for all $ y \in X_0 $
+$$
+	\sum_{k \in \Ntrl} \overline{\eta_k} \xi_k = 0 \ \ \ \ \ \ \circledast
+$$
+
+This therefore requires that $ \eta_n = -\eta_1 $, but as $ n $ was abitrary and $\circledast $ must hold for all $ y \in X_0 $ so it follows that $ X_0^\perp \subseteq \operatorname{span}\left\{ x\right\}$ where $ x = (1,1,1,\ldots) $.
+
+It is clear that if $ z = (\eta, \eta, \eta, \ldots) \in \operatorname{span}\left\{ x \right\} $ then 
+$$
+	\sum_{k \in \Ntrl} \overline{\eta} \xi_k = \overline{\eta} \sum_{k \in \Ntrl} \xi_k = 0
+$$
+so $ z \in X_0^\perp $ and $ X_0^\perp = \operatorname{span}\left\{ x \right\} $.
+
+Secondly show that there exists an isometrical isomorphism $ T : X/X_0 \lra \Cplx $.
+
+Define a mapping $ T : X/X_0 \lra \Cplx $ by $ T(x + X_0) = \sum_{k \in \Ntrl}\xi_k $ where $ x = (\xi_k)_{k \in \Ntrl} $
+
+\emph{T Well Defined: }
+
+Suppose $ y = (\eta_k)_{k \in \Ntrl} \in X_0 $ and $ x = (\xi_k)_{k \in \Ntrl} \in X $ then 
+$$ T(x +y) =  \sum_{k \in \Ntrl} (\xi_k + \eta_k) = \sum_{k \in \Ntrl} \xi_k + \underbrace{\sum_{k \in \Ntrl} \eta_k}_{=0} = \sum_{k \in \Ntrl} \xi_k = T(x) $$
+
+\emph{T Linear: }
+
+This follows directly from the linearity of the sum.
+
+\emph{T Surjective: }
+
+This is clear, because for any $ a \in \Cplx $ we just notice that $ x = (a, 0, 0, \ldots ) $ is such that $ T(x + X_0) = a $.
+
+\emph{T Injective: }
+
+Suppose $ T(x + X_0) = T(y + X_0) $ then $ T(x -y  + X_0) = 0 $ by linearity and by the definition of $ T $ and $ X_0 $ it follows that $ x - y \in X_0 $ so $ x + X_0 = y + X_0 $.
+
+
+T injective and T surjective implies $ X/X_0 $ is ismorphic to $ \Cplx $ and importantly 1 dimensional.
+
+\emph{T Isometric: }
+
+Because we have shown that $ X/X_0 $ then we have that any $ y + X_0 \in X / X_0 $ is such that $ y = \lambda x + X_0 $. 
+We choose $ x= (\xi_k )_{k \in \Ntrl} $ with $ \xi_k = \left(\frac{1}{2} \right)^k $ \footnote{ $ 0 \not\in \Ntrl $ } so that $ T(x + X_0) = 1 $ and $ \xi_k \geq 0 $ for all $ k \in \Ntrl $.
+Now $ |T(y + X_0)| = |\lambda T(x+X_0)| = |\lambda| $ and $ ||y + X_0|| = \inf_{x \in X_0} ||y - x|| = ||y|| $ by the definition of $ X_0 $.
+So $ |T(y + X_0)| = ||y + X_0 || $ and $ T $ is an isometry.
 
 \section*{Acknowledgements}
-Thank you to Ed McDonald for pointing out an elementry flaw in my original solution to 
-question 1. 
+Thank you to Ed McDonald for his guidance on various aspects of the questions.
 
-Thank you to Roberto Riedig for suggesting a method which I latter developed for the solution
-to question 2.
 \end{document}
