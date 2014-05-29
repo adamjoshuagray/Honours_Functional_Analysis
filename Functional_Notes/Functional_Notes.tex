@@ -1,0 +1,259 @@
+\documentclass{unswmaths}
+\usepackage{unswshortcuts}
+\begin{document}
+\author{Adam J. Gray}
+\title{Lecture Notes}
+\subject{Functional Analysis}
+\studentno{3329798}
+
+\unswtitle
+
+\section*{Spectral Thoery}
+
+Spectral theory is analogous to eigen-value theory for matricies.
+In this case we look at spectral theory on bounded linear operators on 
+a Hilbert space $ \Hlbt $. 
+
+We define the following
+
+For $ T \in B( \Hlbt ) $ we define the following
+\begin{definition}[Resolvent Set]
+	Define $ \rho(T) := \{ \lambda \in \Cplx : \exists (T-\lambda)^{-1}  \in B( \Hlbt ) \} $.
+\end{definition}
+\begin{definition}[Resolvent]
+	Define $ R_\lambda(T) := (T - \lambda)^{-1} $
+\end{definition}
+\begin{definition}[Spectrum]
+	Define $ \sigma(T) := \Cplx \setminus \rho(T) $.
+\end{definition}
+
+On could heuristically think of $ \lambda $ aas being an eigen-value and we formalize this idea as follows.
+
+If $ \Hlbt = \Cplx^n $ and $ T = T_A $ where $ A = \left( a_{j,k} \right)_{j,k=1}^n $ (a matrix) then 
+if $ (T - \lambda I)^{-1} $ does not exist, i.e. $ \ker( T - \lambda I) \neq \mathbf{0} $ then $ \lambda $ is
+an eigen-value.
+
+We would like to formalize and prove the following three ideas;
+\begin{itemize}
+	\item $ \sigma(T) $ is bounded,
+	\item $ \sigma(T) $ is closed, and
+	\item $ \sigma(T) $ is non-empty.
+\end{itemize}
+
+\begin{lemma}[$\sigma(T) $ is bounded]
+\label{lem:sigma_bdd}
+	If $ | \lambda | > ||T|| $ then $ \lambda \in \rho(T) $.
+\end{lemma}
+\begin{proof}
+	If we have that $ | \lambda | < ||T|| $ then 
+	\begin{align*}
+		\sum_{k=0}^\infty \frac{||T||^k}{|\lambda|^k} < \infty 
+	\end{align*}
+	and so it makes since to define an operator
+	$$
+		S_\lambda := \sum_{k=0}^\infty \frac{T^k}{\lambda^k}
+	$$
+	where  $ S_\lambda \in B(\Hlbt) $.
+	
+	Now clearly we can write
+	$$
+		(T-\lambda I) S_\lambda = (T + \frac{T^2}{\lambda} + \frac{T^3}{\lambda^2} + \cdots ) - (\lambda I + T + \frac{T^2}{\lambda} + \frac{T^3}{\lambda^2} + \cdots )
+	$$
+	and therefore $ (T-\lambda I) S_\lambda = - \lambda I $.
+	Similarly $ S_\lambda (T-\lambda I) = - \lambda I $.
+	That means that $ \lambda \in \rho(T) $, because we have found an inverse of $ (T-\lambda I ) $, namely
+	$$ R_\lambda(T) = \frac{-S_\lambda}{\lambda}. $$
+\end{proof}
+
+Due to the way that $ \sigma(T) $ is defined it would be appropriate to prove that $ \rho(T) $ is open
+in order to show that $ \sigma(T) $ is closed.
+\begin{lemma}[$ \sigma(T) $ is closed]
+\label{lem:sigma_closed}
+	If $ \lambda_0 \in \rho(T) $ and $ a = ||R_{\lambda_0}(T)||^{-1} > 0 $ then 
+	$ \{ \lambda \in \Cplx : | \lambda - \lambda_0 | < a \} \subseteq \rho(T) $. 
+\end{lemma}
+What this essentially says is that we can always cook up an open $a$-ball around any $ \lambda_0 \in \rho(T) $.
+\begin{proof}
+	Let $ \lambda \in \Cplx $ be such that $ |\lambda - \lambda_0 | < a $.
+	We can see that since $$ |\lambda - \lambda_0| \cdot || R_{\lambda_0} (T) || < 1 $$ then 
+	$$
+		\sum_{k=0}^\infty |\lambda - \lambda_0|^k\cdot || R_{\lambda_0}(T) ||^k < \infty
+	$$
+	and so it makes since to define an operator
+	$$
+		S_\lambda := \sum_{k=0}^\infty (\lambda -\lambda_0)^k R_{\lambda_0}(T)^{k}
+	$$
+	where $ S_\lambda \in B(\Hlbt) $.
+	Now by writing $ \mu = \lambda - \lambda_0 $ we have that
+	\begin{align*}
+		(T - \lambda)S_\lambda &= (T - \lambda_0 I - \mu I)S_\lambda \\
+			&= \left( (T- \lambda_0 I) + \mu I + \mu^2 R_{\lambda_0}(T) + \mu^3R_{\lambda_0}(T) + \cdots \right) \\
+			& \ \ \ - \left( \mu I + \mu^2 R_{\lambda_0}(T) + \mu^3 R_{\lambda_0}(T)^2 + \cdots  \right) \\
+			&= (T - \lambda_0 I ).
+	\end{align*}
+	In exactly the same manner we see that $ S_\lambda(T-\lambda I) = (T - \lambda_0 I)$.
+	
+	Now since $ (T-\lambda_0 I ) $ is invertable, with inverse $ R_{\lambda_0} $ it follows that 
+	$$
+		R_{\lambda_0}S\lambda (T -\lambda I ) = I
+	$$
+	and so $ \lambda \in \rho(T) $ and in particular $ R_{\lambda} = R_{\lambda_0}S_{\lambda} $.
+	This shows that $ \rho(T) $ is open and hence $ \sigma(T) $ is closed.
+\end{proof}
+
+\begin{lemma}[$ \sigma(T) $ is non-empty]
+\end{lemma}
+\begin{proof}
+	We assume $ \sigma(T) \neq \emptyset $ and arrive at a contradiction.
+	
+	Define a function $$ f_{T}(z) := R_{z}(T). $$
+	By lemma \ref{lem:sigma_closed} for any $ \lambda_0 \in \Cplx $ we can write
+	$$ \sum_{k=0}^\infty (z-\lambda_0)^k R_{\lambda_0}(T)^{k+1}. $$
+	We can also further say that this series converges for all $ z \in \Cplx $.
+	This means $ f $ is an entire function.
+	By using the ideas of lemma \ref{lem:sigma_bdd} we can also write 
+	$$
+		f_T(z) = R_{z}(T) = - \frac{1}{z} \sum_{k=0}^\infty \frac{T^k}{z^k}
+	$$
+	and so $ f(z) $ is bounded.
+	Now by Liouville's theorem $ f \equiv C $ where  $ C $ is a constant, but this is clearly a contradiction.
+\end{proof}
+
+\section*{Spectral Radius}
+
+In this section we define the spectral radius of an operator and show a result that relates the norm of the operator
+to the spectral radius. We then go on to show that if $ T $ is self adjoint then this relationship can be further simplified.
+
+\begin{definition}[Spectral Radius]
+	For any $ T \in B(\Hlbt) $ define $$ r(t) := \sup \{ |\lambda| : \lambda \in \sigma(T) \} $$.
+\end{definition}
+
+\begin{theorem}
+	\label{thm:spec_rad}
+	For any $ T \in B(\Hlbt) $ we have that 
+	$$
+		r(T) = \lim_{n \lra \infty} ||T^n||^\frac{1}{n}
+	$$
+\end{theorem}
+We use several lemmas to prove this result.
+Define $ \alpha(T) = \lim_{n \lra \infty}  ||T^n ||^\frac{1}{n} $.
+\begin{lemma}
+	$ \alpha(T) $ is well defined.
+\end{lemma}
+\begin{proof}
+	Let $ \alpha_n = ||T^n|| $ and observe that by Cauchy-Schwartz
+	\begin{align*}
+		||T^{n+k} || \leq ||T^n|| \cdot ||T^k||.	& & \circledast
+	\end{align*}
+	Let $$ \alpha = \inf_{n \geq 1} \alpha^\frac{1}{n}_n $$ and fix any $ \epsilon > 0 $.
+	
+	Pick an $ m \in \Ntrl $ such that $ \alpha\leq \alpha_m^\frac{1}{m}< \alpha + \epsilon $.
+	
+	For any $ n \in \Ntrl $ we can pick $ k, b \in \Ntrl $ such that $ n = km + b $ and $ b < m $.
+	
+	Then by using the observation from $ \circledast $ we can write 
+	\begin{align*}
+		\alpha &\leq \alpha_{n}^\frac{1}{n} \\
+			&\leq \alpha_{km}^\frac{1}{n} \cdot \alpha_{b}^\frac{1}{n} \\
+			&\leq \alpha_{m}^\frac{k}{n} \cdot \alpha_{b}^\frac{1}{n} \\
+			&= \left(\alpha_m^\frac{1}{m} \right)^\frac{km}{n} \cdot \alpha_b^\frac{1}{n} \\
+			&\leq (\alpha + \epsilon)^{1 - \frac{b}{n}} \cdot \left( \max_{1 \leq b \leq m} a_b\right)^\frac{1}{n}.
+	\end{align*}
+	By letting $ n \lra \infty $ then we can pinch $ \alpha_{n}^\frac{1}{n} $ between $ \alpha $ and $ \alpha + \epsilon $,
+	i.e. 
+	$$
+		\alpha \leq \liminf_{n \lra \infty} \alpha_n^\frac{1}{n} \leq \limsup_{n \lra \infty} \alpha_n^\frac{1}{n} \leq \alpha + \epsilon.
+	$$
+	So we can say that $ \alpha(T) = \alpha $.
+\end{proof}
+\begin{lemma}
+	\label{lem:lambda_alpha_rho}
+	If $ |\lambda| > \alpha(T) $ then $ \lambda \in \rho(T) $
+\end{lemma}
+\begin{proof}
+	Note that
+	if $ | \lambda | > \alpha(T) $ then there exists some $ N \in \Ntrl $ such that for any $ n \geq N $ we have that
+	$$ 
+		|| T^n ||\frac{1}{n} < \alpha(T).
+	$$
+	If we let $ q = \frac{\alpha(T)}{|\lambda|} $  then we can re-write this as
+	$$
+		||T^n|| < q^n |\lambda|^n 
+	$$
+	and so $ \frac{||T^n||}{|\lambda|^n} < q^n $.
+	By noting that $ 0 < q < 1 $ we can say that the operator defined by
+	$$ S_\lambda = - \sum_{n=0}^\infty \frac{T^n}{\lambda^n} $$
+	converges absoluetly.
+	
+	Now since $ (T-\lambda I) S_\lambda = S_\lambda (T - \lambda I) = I $ (by a result similar to that in lemma \ref{lem:sigma_bdd})
+	we can say that $ \lambda \in \rho(T) $.
+\end{proof}
+
+\begin{lemma}
+	\label{lem:lambda_alpha_r}
+	If $ |\lambda| > \alpha(T) $ then $ |\lambda| \geq r(T) $.
+\end{lemma}
+\begin{proof}
+	If $ |\lambda| > \alpha(T) $ and $ |\lambda| < r(T) $ then because of the way we define $ r $ there must exist a $ \lambda_1 \in \rho(T) $ such that
+	$ \alpha(T) < |\lambda| < |\lambda_1| < r(T) $. This is a contradition because lemma \ref{lem:lambda_alpha_rho} shows
+	$ \lambda_0 \in \rho(T) $.
+\end{proof}
+
+What \ref{lem:lambda_alpha_r} says is that $ \alpha(T) \geq r(T) $.
+We can now prove a final result which will amount to a proof of theorem \ref{thm:spec_rad}
+
+\begin{proof}[of theorem \ref{thm:spec_rad}]
+Assume, for a contradiction that $ \alpha(T) > r(T) $. Then we can pick some $ \lambda \in \Cplx $ such that 
+$$
+	\alpha(T) < |\lambda| < r(T).
+$$
+Fix some $ x, y \in \Hlbt $ and define a function
+$$
+	f_T(z) := R_z(T) = -\frac{1}{z} \sum_{k=0}^\infty \frac{\langle T^n x, y \rangle}{z^n}.
+$$
+This function is defined if $ |z| > \alpha(T) $ (by applying the same idea as in lemma \ref{lem:lambda_alpha_rho}).
+
+Since $ \sigma(T) \subseteq \{ |z| \leq r(T) \} $ and so $ f $ is holomorphic for all $ |z| > r(T) $ so
+it admits a power series expansion on the whole disc. It follows that the expansion given above for the wider disc
+$$ \{ |z| > r(T) \} $$
+
+This means that the series 
+$$
+	\sum_{n=0}^\infty \frac{\langle T^n x, y \rangle}{\lambda^n}
+$$
+converges.
+
+This means that we must have the tail terms of this series going to zero, i.e.
+$$
+	\lim_{n \lra \infty} \frac{|\langle T^n x, y \rangle|}{|\lambda|^n} = 0
+$$
+and so by the uniform boundedness principle we must have a $ c > 0 $ such that
+$$
+	||T^n|| \leq c|\lambda|^n
+$$
+for all $ n $ and so
+$$
+	||T^n||^\frac{1}{n} \leq c^\frac{1}{n} |\lambda|
+$$
+which leads to a contradiction because it implies that $ \alpha(t) = \lim_{n \lra \infty} ||T^n||^\frac{1}{n} \leq |\lambda| $.
+\end{proof}
+
+We now consider the case of a self-adjoint bounded linear operator. In this case a formula formula for $ r(T) $
+is rather much more simple.
+\begin{lemma}
+	If $ T \in B(\Hlbt) $ and $ T = T^* $ then $ r(T) = ||T|| $.
+\end{lemma}
+\begin{proof}
+	From the $C^*$ identity we have that $ ||T||^2 = ||T^*T|| = ||T^2|| $.
+	
+	We can generalise this to say $ ||T||^{2n} = ||T^{2n}|| $ for all $ n \in \Ntrl $.
+	By noting that we can write
+	$$
+		r(T) = \lim_{n \lra \infty} ||T^n||\frac{1}{n} = \lim_{n \lra \infty}||T^{2^n}||^{2^{-n}} = ||T||
+	$$
+	we have the result.
+\end{proof}
+
+\section*{Rational Calculus}
+
+\end{document}
