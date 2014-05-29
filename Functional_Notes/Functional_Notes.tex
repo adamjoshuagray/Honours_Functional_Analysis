@@ -254,6 +254,120 @@ is rather much more simple.
 	we have the result.
 \end{proof}
 
-\section*{Rational Calculus}
+We now prove a collection of results about the spectrum of various types of operators.
 
+\begin{theorem}
+	If $ T \in B(\Hlbt) $ and $ T $ is self adjoint then $ \sigma(T) \subseteq \Rl $.
+\end{theorem}
+\begin{proof}
+	Let $ \lambda \in \Cplx $ be such that $ \lambda = \alpha + i \beta $ with $ \beta \neq 0 $.
+	Then 
+	\begin{align*}
+		||(T - \lambda I)x||^2 &= ||( T - \alpha I - i \beta I)x||^2 \\
+			&= \langle (T - \alpha I - i \beta I)x, (T - \alpha I - i \beta I)x \rangle \\
+			&= \langle (T - \alpha I + i \beta I) (T - \alpha I - i \beta I)x,x \rangle \\
+			&= \langle \left((T - \alpha I)^2 + \beta I \right)x,x \rangle \\
+			&= \langle (T - \alpha I)^2x + \beta Ix ,x \rangle \\
+			&= \langle (T - \alpha I)^2 x, x \rangle + \beta^2 \langle x, x\rangle \\
+			&= ||(T-\alpha I)x||^2 + \beta^2 ||x||^2.
+	\end{align*}
+	
+	We can therefore write that $ || (T- \lambda I)x || \geq \Im(\lambda)||x|| $ which means that
+	$ (T - \lambda) $ is injective because $ \lambda $ was arbitrary.
+	
+	We can also see that $ T $ is surjective because
+	$$
+		\left(\operatorname{Im}(T - \lambda I)\right)^\perp = \ker(T - \overline{\lambda}) = \{ 0 \}.
+	$$
+	This means that $$ || (T - \lambda I)^{-1} || \leq \Im(\lambda)^{-1} $$ which is to say that 
+	$ \lambda \in \rho(T) $.
+\end{proof}
+
+\section*{Rational Calculus}
+Here we generalise ideas about functions on the real numbers to functions of bounded linear operators.
+
+Firstly we consider a function 
+$$
+	f(z) = \frac{(z-\alpha_1) (z - \alpha_2) \cdots (z - \alpha_n)}{(z - \lambda_1) (z- \lambda_2) \cdots (z - \lambda_m)}
+$$
+and call this function a rational function. This is because it can be considered the quotient of two polynomials. (The complete factorization here being
+permitted by the fundamental theorem of calculus).
+
+From this definition of $ f $ is clear to see that the $ \alpha_j $ constitute the roots of $ f $ and the $ \lambda_j $ constitute the 
+poles of $ f $.
+
+Now for any $ T \in B(\Hlbt) $ and $ \lambda_1, \ldots , \lambda_m \not\in \sigma(T) $ we define a rational calculus by
+$$
+	f(T) := (T-\alpha_1 I)(T- \alpha_2 I) \cdots (T - \alpha_n I) R_{\lambda_1}(T)R_{\lambda_2}(T) \cdots R_{\lambda_m}(T)
+$$
+
+We now have a simple theorem we wish to consider which relates the spectrum of $ f(T) $ to the spectrum of $ T $.
+
+\begin{theorem}
+	For $ T \in B(\Hlbt) $ and with $ f $ defined as above (i.e. with $ \lambda_j \not\in \sigma(T) $) then
+	$$
+		\sigma(f(T)) = f(\sigma(T)). 
+			\footnote{We define $ f(\sigma(T)) := \{ f(z) : z \in \sigma(T) \} $. That is to say $ f(\sigma(T)) $ returns a set with 
+	$ f $ applied to each element of the set which was supplied as the argument.}
+	$$
+\end{theorem}
+\begin{proof}
+	This proof procedes in two parts:
+	\begin{itemize}
+		\item	$f(\sigma(T)) \subseteq \sigma(f(T)) $
+		
+		Fix a $ \lambda \in \sigma(T) $ and let $ \mu = f(\lambda) $. Define a function $ g $ such that
+		$$
+			g(z) = f(z) - \mu.
+		$$
+		Now since $ g(\lambda) = 0  $, $ g $ admits a factorization $ g(z) = (z - \lambda)\frac{p(z)}{q(z)} $
+		where $ p, q $ are polynomials. 
+		
+		Now consider
+		$$
+			g(T) = f(T) - \mu I = \underbrace{(T - \lambda I)}_{\circledast} p(T) q(T)^{-1} 
+		$$
+		and note that $ \circledast $ is not invertable because $ \lambda \in \sigma(T) $ and hence
+		$$
+			f(T) - \mu 
+		$$
+		is not invertable and so $ \mu \in \sigma(f(T)) $.
+		\item $ \sigma(f(T)) \subseteq f(\sigma(T)) $
+		
+		Let $\mu \in \sigma(f(T)) $ and define a function 
+		$$
+			g(z) = f(z) - \mu = \frac{(z-\alpha_1)((z-\alpha_2)\cdots(z - \alpha_n)}{(z-\lambda_1)(z-\lambda_2)\cdots (z-\lambda_m)}
+		$$
+		so we can write
+		$$
+			f(T) - \mu = \underbrace{(T - \alpha_1 I) (T-\alpha_2 I) \cdots (T - \alpha_n I)}_{\circledast \circledast} \underbrace{R_{\lambda_1}(T) R_{\lambda_2}(T) \cdots R_{\lambda_m}(T)}_{\circledast \circledast \circledast}.
+		$$
+		Not $ f(T) - \mu $ is not invertible because $ \mu \in \sigma(f(T)) $. By definition everything in $ \circledast \circledast \circledast $ must be intertable
+		so something in $ \circledast \circledast $ must not be invertable. This means that one of $ \alpha_1, \alpha_2 \ldots \alpha_n $ is in $ \sigma(T) $.
+		
+		Now for all $ k \in \{ 1, \ldots, n \} $ we have that
+		$$
+			g(\alpha_k) = 0 
+		$$
+		which would force $ f(\alpha_k) = \mu $ and so $ \mu \in f(\sigma(T)) $.
+	\end{itemize}
+\end{proof}
+
+We have an immediate corollary in the case where $ T $ is self adjoint.
+
+\begin{corollary}
+	If $ T = T^* $ then $$||f(T)|| = \sup_{\lambda \in \sigma(T)} |f(\lambda)|$$
+\end{corollary}
+\begin{proof}
+	By the $ C^* $ identity we have that
+	\begin{align*}
+		||f(T)||^2 &= ||f(T)^*f(T)|| \\
+			&= \overline{f}(T^*)f(T) ||.
+	\end{align*}
+	Letting $ g(z) = \overline{f}(z)f(z) $ we have that since $ T $, and hence $ g(T) $, is self adjoint that  
+	$$
+		||g(T)|| = r(g(T)) = \sup_{z \in \sigma(T)} |g(z)| = \sup_{z \in \sigma(T)} |f(z)|^2.
+	$$
+	That is to say $$||f(T)|| = \sup_{\lambda \in \sigma(T)} |f(\lambda)|.$$
+\end{proof}
 \end{document}
