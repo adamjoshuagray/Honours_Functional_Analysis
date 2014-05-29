@@ -281,6 +281,9 @@ We now prove a collection of results about the spectrum of various types of oper
 	$$
 	This means that $$ || (T - \lambda I)^{-1} || \leq \Im(\lambda)^{-1} $$ which is to say that 
 	$ \lambda \in \rho(T) $.
+	
+	This means that $ \lambda \not\in \sigma(T) $ which means that any $ z \in \sigma(T) $ must be such that
+	$ \Im(z) = 0 $.
 \end{proof}
 
 \section*{Rational Calculus}
@@ -340,9 +343,9 @@ We now have a simple theorem we wish to consider which relates the spectrum of $
 		$$
 		so we can write
 		$$
-			f(T) - \mu = \underbrace{(T - \alpha_1 I) (T-\alpha_2 I) \cdots (T - \alpha_n I)}_{\circledast \circledast} \underbrace{R_{\lambda_1}(T) R_{\lambda_2}(T) \cdots R_{\lambda_m}(T)}_{\circledast \circledast \circledast}.
+			f(T) - \mu I = \underbrace{(T - \alpha_1 I) (T-\alpha_2 I) \cdots (T - \alpha_n I)}_{\circledast \circledast} \underbrace{R_{\lambda_1}(T) R_{\lambda_2}(T) \cdots R_{\lambda_m}(T)}_{\circledast \circledast \circledast}.
 		$$
-		Not $ f(T) - \mu $ is not invertible because $ \mu \in \sigma(f(T)) $. By definition everything in $ \circledast \circledast \circledast $ must be intertable
+		Note $ f(T) - \mu I $ is not invertible because $ \mu \in \sigma(f(T)) $. By definition everything in $ \circledast \circledast \circledast $ must be intertable
 		so something in $ \circledast \circledast $ must not be invertable. This means that one of $ \alpha_1, \alpha_2 \ldots \alpha_n $ is in $ \sigma(T) $.
 		
 		Now for all $ k \in \{ 1, \ldots, n \} $ we have that
