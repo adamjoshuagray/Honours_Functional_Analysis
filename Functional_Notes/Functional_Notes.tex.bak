@@ -25,7 +25,7 @@
 	Note that from this inner product we can easily define  a norm by writing 
 	$$ ||x|| = \sqrt{\langle x, x \rangle}. $$
 	
-	We will now look at a couple of examples of Hilbert spaces.
+	We will now look at a couple of exmaples of Hilbert spaces.
 	
 \subsection*{ $ \Cplx $ and $ \Rl $} 
 	Without being tedious checking that all the requirements are fulfilled we will simply state that both $ \Cplx $ and $ \Rl $
@@ -33,7 +33,7 @@
 
 \subsection*{ $ \ell^2 $ }
 	We will show that many of the properties of a Hilbert space are fulfilled by $ \ell^2 $ and we will
-	claim that $ \ell^2 $ is infect a Hilbert space. To do this will will first define $ \ell^2 $ and then
+	claim that $ \ell^2 $ is infact a Hilbert space. To do this will will first define $ \ell^2 $ and then
 	check that the inner product axioms are satisfied.
 	
 \begin{definition}[ $\ell^2 $ ]
@@ -72,7 +72,7 @@ and in particular it is clear to see that $ \langle \mathbf{x}, \mathbf{x} \rang
 $ \mathbf{x} = 0 $.
 
 We now wish to show that for two elements $ \mathbf{x}, \mathbf{y} \in \ell^2 $ that the inner product does
-in fact map to a complex number (and not just map to infinity).
+infact map to a complex number (and not just map to infinity).
 
 For $ \mathbf{x}, \mathbf{y} \in \ell^2 $  see that
 \begin{align*}
@@ -86,7 +86,7 @@ and by geometric - arithmetic mean inequality
 			&< \infty.
 \end{align*}
 
-We now show that $ \ell^2 $ is in fact closed under addition, and hence a linear space.
+We now show that $ \ell^2 $ is infact closed under addition, and hence a linear space.
 For $ \mathbf{x}, \mathbf{y} \in \ell^2 $ we see that by finite dimension Cauchy-Schwartz 
 
 \begin{align*}
@@ -106,7 +106,7 @@ $$
 	\langle f, g \rangle = \int_{-1}^1 f(t) \overline{g(t)} dt.
 $$
 
-Do show that $ C[-1, 1] $ is not complete define the sequence of function $ f_n $ by
+Do show taht $ C[-1, 1] $ is not complete define the sequence of function $ f_n $ by
 \begin{align*}
 	f_n(t) = 
 	\begin{cases}
@@ -127,9 +127,9 @@ $$
 	F(0) = \sum_{n=1}^\infty \frac{1}{n^\frac{3}{4}} \lra \infty.
 $$
 This means that $ F \not\in C[-1,1] $ and hence $ C[-1,1] $ is not complete and therefore not a Hilbert space.
-\section*{Spectral Theory}
+\section*{Spectral Thoery}
 
-Spectral theory is analogous to eigen-value theory for matrices.
+Spectral theory is analogous to eigen-value theory for matricies.
 In this case we look at spectral theory on bounded linear operators on 
 a Hilbert space $ \Hlbt $. 
 
@@ -146,7 +146,7 @@ For $ T \in B( \Hlbt ) $ we define the following
 	Define $ \sigma(T) := \Cplx \setminus \rho(T) $.
 \end{definition}
 
-On could heuristically think of $ \lambda $ as being an eigen-value and we formalize this idea as follows.
+On could heuristically think of $ \lambda $ aas being an eigen-value and we formalize this idea as follows.
 
 If $ \Hlbt = \Cplx^n $ and $ T = T_A $ where $ A = \left( a_{j,k} \right)_{j,k=1}^n $ (a matrix) then 
 if $ (T - \lambda I)^{-1} $ does not exist, i.e. $ \ker( T - \lambda I) \neq \mathbf{0} $ then $ \lambda $ is
@@ -212,7 +212,7 @@ What this essentially says is that we can always cook up an open $a$-ball around
 	\end{align*}
 	In exactly the same manner we see that $ S_\lambda(T-\lambda I) = (T - \lambda_0 I)$.
 	
-	Now since $ (T-\lambda_0 I ) $ is invertible, with inverse $ R_{\lambda_0} $ it follows that 
+	Now since $ (T-\lambda_0 I ) $ is invertable, with inverse $ R_{\lambda_0} $ it follows that 
 	$$
 		R_{\lambda_0}S\lambda (T -\lambda I ) = I
 	$$
@@ -302,7 +302,7 @@ Define $ \alpha(T) = \lim_{n \lra \infty}  ||T^n ||^\frac{1}{n} $.
 	and so $ \frac{||T^n||}{|\lambda|^n} < q^n $.
 	By noting that $ 0 < q < 1 $ we can say that the operator defined by
 	$$ S_\lambda = - \sum_{n=0}^\infty \frac{T^n}{\lambda^n} $$
-	converges absolutely.
+	converges absoluetly.
 	
 	Now since $ (T-\lambda I) S_\lambda = S_\lambda (T - \lambda I) = I $ (by a result similar to that in lemma \ref{lem:sigma_bdd})
 	we can say that $ \lambda \in \rho(T) $.
@@ -314,7 +314,7 @@ Define $ \alpha(T) = \lim_{n \lra \infty}  ||T^n ||^\frac{1}{n} $.
 \end{lemma}
 \begin{proof}
 	If $ |\lambda| > \alpha(T) $ and $ |\lambda| < r(T) $ then because of the way we define $ r $ there must exist a $ \lambda_1 \in \rho(T) $ such that
-	$ \alpha(T) < |\lambda| < |\lambda_1| < r(T) $. This is a contradiction because lemma \ref{lem:lambda_alpha_rho} shows
+	$ \alpha(T) < |\lambda| < |\lambda_1| < r(T) $. This is a contradition because lemma \ref{lem:lambda_alpha_rho} shows
 	$ \lambda_0 \in \rho(T) $.
 \end{proof}
 
@@ -365,7 +365,7 @@ is rather much more simple.
 \begin{proof}
 	From the $C^*$ identity we have that $ ||T||^2 = ||T^*T|| = ||T^2|| $.
 	
-	We can generalize this to say $ ||T||^{2n} = ||T^{2n}|| $ for all $ n \in \Ntrl $.
+	We can generalise this to say $ ||T||^{2n} = ||T^{2n}|| $ for all $ n \in \Ntrl $.
 	By noting that we can write
 	$$
 		r(T) = \lim_{n \lra \infty} ||T^n||\frac{1}{n} = \lim_{n \lra \infty}||T^{2^n}||^{2^{-n}} = ||T||
@@ -394,7 +394,7 @@ We now prove a collection of results about the spectrum of various types of oper
 	We can therefore write that $ || (T- \lambda I)x || \geq \Im(\lambda)||x|| $ which means that
 	$ (T - \lambda I ) $ is injective.
 	
-	We can also see that $ T $ is subjective because
+	We can also see that $ T $ is surjective because
 	$$
 		\left(\operatorname{Im}(T - \lambda I)\right)^\perp = \ker(T - \overline{\lambda}) = \{ 0 \}.
 	$$
@@ -406,7 +406,7 @@ We now prove a collection of results about the spectrum of various types of oper
 \end{proof}
 
 \section*{Rational Calculus}
-Here we generalist ideas about functions on the real numbers to functions of bounded linear operators.
+Here we generalise ideas about functions on the real numbers to functions of bounded linear operators.
 
 Firstly we consider a function 
 $$
@@ -434,7 +434,7 @@ We now have a simple theorem we wish to consider which relates the spectrum of $
 	$$
 \end{theorem}
 \begin{proof}
-	This proof proceeds in two parts:
+	This proof procedes in two parts:
 	\begin{itemize}
 		\item	$f(\sigma(T)) \subseteq \sigma(f(T)) $
 		
@@ -449,11 +449,11 @@ We now have a simple theorem we wish to consider which relates the spectrum of $
 		$$
 			g(T) = f(T) - \mu I = \underbrace{(T - \lambda I)}_{\circledast} p(T) q(T)^{-1} 
 		$$
-		and note that $ \circledast $ is not invertible because $ \lambda \in \sigma(T) $ and hence
+		and note that $ \circledast $ is not invertable because $ \lambda \in \sigma(T) $ and hence
 		$$
 			f(T) - \mu 
 		$$
-		is not invertible and so $ \mu \in \sigma(f(T)) $.
+		is not invertable and so $ \mu \in \sigma(f(T)) $.
 		\item $ \sigma(f(T)) \subseteq f(\sigma(T)) $
 		
 		Let $\mu \in \sigma(f(T)) $ and define a function 
@@ -464,8 +464,8 @@ We now have a simple theorem we wish to consider which relates the spectrum of $
 		$$
 			f(T) - \mu I = \underbrace{(T - \alpha_1 I) (T-\alpha_2 I) \cdots (T - \alpha_n I)}_{\circledast \circledast} \underbrace{R_{\lambda_1}(T) R_{\lambda_2}(T) \cdots R_{\lambda_m}(T)}_{\circledast \circledast \circledast}.
 		$$
-		Note $ f(T) - \mu I $ is not invertible because $ \mu \in \sigma(f(T)) $. By definition everything in $ \circledast \circledast \circledast $ must be invertible
-		so something in $ \circledast \circledast $ must not be invertible. This means that one of $ \alpha_1, \alpha_2 \ldots \alpha_n $ is in $ \sigma(T) $.
+		Note $ f(T) - \mu I $ is not invertible because $ \mu \in \sigma(f(T)) $. By definition everything in $ \circledast \circledast \circledast $ must be intertable
+		so something in $ \circledast \circledast $ must not be invertable. This means that one of $ \alpha_1, \alpha_2 \ldots \alpha_n $ is in $ \sigma(T) $.
 		
 		Now for all $ k \in \{ 1, \ldots, n \} $ we have that
 		$$
