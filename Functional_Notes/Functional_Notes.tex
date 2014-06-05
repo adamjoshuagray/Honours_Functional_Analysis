@@ -127,6 +127,194 @@ $$
 	F(0) = \sum_{n=1}^\infty \frac{1}{n^\frac{3}{4}} \lra \infty.
 $$
 This means that $ F \not\in C[-1,1] $ and hence $ C[-1,1] $ is not complete and therefore not a Hilbert space.
+
+\subsection*{Completion Procedure for Hilbert Spaces}
+
+Let $( \Hlbt_0, \langle \cdot, \cdot \rangle )$ be a pre-Hilbert space (i.e. not complete). 
+We have the usual norm induced by the inner product, that is $ ||x|| = \sqrt{ \langle x, x \rangle } $.
+
+To ``complete'' this as forma Hilbert space define the set of Cauchy Sequences
+$$
+	H = \{ X = (x_k)_{k=1}^\infty : x_k \in \Hlbt_0 \}.
+$$
+
+We then claim that $$ \Hlbt = \{ \overline{X} : X \in H \} $$ is a Hilbert space where we define
+$$ \overline{X} = \{ Y \in H : Y \sim X \}. $$ We say that $$ X \sim Y $$ when $ \lim_{k \lra \infty} ||x_k - y_k|| = 0 $.
+
+We define the inner product on this new Hilbert space $ \Hlbt $ by 
+$$
+	\langle \overline{X}, \overline{Y} \rangle = \lim_{k \lra \infty} \langle x_k, y_k \rangle. 
+$$
+
+Simple verification shows that is is infact a ``valid'' inner product.
+
+We also clarify addition an scalar multiplcation in this new Hilbert space by saying that
+\begin{align*}
+	\overline{X} + \overline{Y} &= \overline{(x_k + y_k)} \\
+	\alpha X = (\alpha x_k ).
+\end{align*}
+
+
+Since we have defined al lthe basic properties of this new Hilbert space, $ \Hlbt $, we check the ``correctness''
+of this definition. 
+
+Suppose we have
+\begin{align*}
+	X' = (x'_k) &\text{ and } X = (x_k) \\
+	Y' = (y'_k) &\text{ and } Y = (y_k)
+\end{align*}
+such that
+\begin{align*}
+	X' \sim X \text{ and } Y' \sim Y
+\end{align*}
+then we wish to verify that
+\begin{align*}
+	X + Y \sim X' + Y' 
+\end{align*}
+and to do this see that
+\begin{align*}
+	\lim_{k \lra \infty} x_k + y_k &= \lim_{k \lra \infty} x'_k + y'_k.
+\end{align*}
+
+Also observe that
+$$
+	\alpha X \sim \alpha X'
+$$
+by the same reasoning.
+
+To verify correctness we also need to show that the limit $ \lim_{k \lra \infty} \langle x_k , y_k \rangle $ exists
+and that
+$$
+	\lim_{k \lra \infty} \langle x_k y_k \rangle = \lim_{ k \lra \infty } \langle x'_k, y'_k \rangle.
+$$
+
+Firstly see that 
+$$
+	\lim_{k \lra \infty} \langle x_k, y_k \rangle \leq \lim_{k \lra \infty} ||x_k||\cdot||y_k||
+$$
+by the Cuachy-Schwartz inequality and so the limit exists.
+
+See that
+$$
+	\lim_{k \lra \infty} \langle x_k - x'_k, y_k - y'_k \rangle = \langle 0, 0 \rangle = 0 
+$$
+and so the desired equality holds.
+
+To make this whole exercise purposful we need to check that the space we have defined is infact complete, and
+therefore a Hilbert space.
+
+Let $ \overline{X}_n \in \Hlbt $ be a sequence of elements of $ \Hlbt $ such that
+$$
+	\sum_{k \lra \infty} ||\overline{X}_k|| < \infty.
+$$
+
+Let $ \overline{X} = \sum_{k \lra \infty} \overline{X}_k $ and note that
+by the definition of $ \Hlbt $ we must that $ \overline{X} \in \Hlbt $ and thus $\Hlbt $ is complete.
+
+\subsection*{Important Identities and Inequalities}
+
+\begin{theorem}[Cauchy-Schwartz]
+	If $ \Hlbt $ is a Hilbert space and $ x, y \in \Hlbt $ then 
+	$$
+		| \langle x, y \rangle | \leq ||x||\cdot||y||.
+	$$
+\end{theorem}
+\begin{proof}
+	Define a function $ f : \Rl \lra \Rl $ as
+	$$
+		f(t) = ||x+ty||^2
+	$$
+	and note that $ f(t) \geq 0 $ for all $ t \in \Rl $.
+	See that
+	$$
+		f(t) = ||x||^2 + t^2||y||^2 + 2t \Re{ \langle x,y \rangle } \geq 0 
+	$$
+	and since $ f(t) $ is a quadratic in $ t $ we can say that
+	$$
+		|\Re\langle x,y\rangle| \leq ||x|| \cdot ||y||
+	$$
+	by considering the discriminant.
+	
+	We wish to ``get rid of'' the $ \Re $ in this result.
+	
+	Now if $ \alpha = \langle x, y \rangle $ with $ \alpha \in \Cplx $ then we can define
+	$ \operatorname{sgn}(\alpha) = \frac{\overline{\alpha}}{|\alpha|} $.
+	
+	Let $ \tilde{x} = \operatorname{sgn}(\alpha) \cdot x $ and from the already established result we can say that
+	$$
+		| \Re \langle \tilde{x}, y \rangle | \leq ||\tilde{x}||\cdot ||y||
+	$$
+	and
+	\begin{align*}
+		\Re \langle \tilde{x}, y \rangle &= \Re(\operatorname{sgn}(\alpha)\cdot \langle x, y \rangle ) \\
+		&= |\langle x, y \rangle |.
+	\end{align*}
+	Also $$ ||\tilde{x}|| = | \operatorname{\alpha}| \cdot ||x|| = ||x|| $$
+	and so we can remove the $ \Re $ part of the result by saying 
+	\begin{align*}
+		|\langle x, y \rangle | = | \Re \langle \tilde{x}, y \rangle | \leq ||\tilde{x}|| \cdot ||y|| = ||x||\cdot ||y||.
+	\end{align*}
+\end{proof}
+
+\begin{theorem}[Triangle Inequality]
+	If $ \Hlbt $ is a Hilbert space and $ x, y \in \Hlbt $ then
+	$$
+		||x + y|| \leq ||x|| + ||y||.
+	$$
+\end{theorem}
+\begin{proof}
+	See that
+	\begin{align*}
+		||x + y||^2 &= \langle x + y, x +y \rangle \\
+			&= ||x||^2 + ||y||^2 + 2 \times \underbrace{\Re{\langle x, y \rangle}}_{ \leq ||x||\cdot||y|| \text{ by Cauchy-Schwartz} } \\
+			&\leq ||x||^2 + ||y||^2 + 2||x||\cdot||y|| \\
+			&= (||x|| + ||y||)^2
+	\end{align*}
+	and so
+	$$
+		||x + y|| \leq ||x|| + ||y||.
+	$$
+\end{proof}
+
+\begin{theorem}[Parallelogram Law]
+If $ \Hlbt $ is a Hilbert space and $ x, y \in \Hlbt $ then
+\begin{align*}
+	2||x||^2 + 2||y||^2 = ||x+y||^2 + ||x-y||^2.
+\end{align*}
+\end{theorem}
+\begin{proof}
+	See that
+	\begin{align*}
+		||x+y||^2 + ||x-y||^2 &= \langle x + y, x+y \rangle + \langle x - y, x -y \rangle \\
+			&= |x||^2 + ||y||^2 + ||x||^2 + ||y||^2 \\
+			& \ \ \ + \langle x, y \rangle + \langle y, x \rangle - \langle x, y \rangle - \langle y, x \rangle \\
+			&= 2||x||^2 + 2||y||^2.
+	\end{align*}
+\end{proof}
+
+\begin{theorem}[Polarization Identity]
+	If $ \Hlbt $ is a complex Hilbert space and $ x, y \in \Hlbt $ then
+	$$
+		\langle x, y \rangle = \frac{1}{2} \left( ||x+y||^2 - ||x-y||^2 + i||x+iy||^2 - i||x-iy||^2 \right).
+	$$
+	If $ \Hlbt $ is a real Hilbert space then this can be reduced to 
+	$$
+		\langle x, y \rangle = \frac{1}{4} \left( ||x+y||^2 - ||x-y||^2 \right).
+	$$
+\end{theorem}
+The proof of these facts follows in much that same way as for the parallelogram law.
+
+\subsection*{Orthonormal Basis in Hilbert Spaces}
+
+An orthonormal basis is a family of elements of $ \Hlbt $ which satisfy the following conditions
+\begin{itemize}
+	\item Mutual orthogonality \\
+	\item Normality \\
+	\item Completeness.
+\end{itemize}
+
+We wish to develop a ``Pythagorean Theorem'' for Hilbert spaces.
+
 \section*{Spectral Theory}
 
 Spectral theory is analogous to eigen-value theory for matrices.
